@@ -49,7 +49,7 @@ public class DbPopulator {
                         "    id          serial primary key, " +
                         "    code        char(5), " +
                         "    title       varchar(63), " +
-                        "    date_prod   timestamp" +
+                        "    date_prod   date" +
                         ");"
         ).subscribe(
                 result -> log.info("database prepared")
