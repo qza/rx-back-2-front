@@ -8,9 +8,9 @@ Frontend with JQuery, Node, Express, React and [Oboe](https://github.com/jimhigs
 
 Except performance benefits in real environment of low connectivity, perceived performance is also increased.
  
-## Demo
+### How to
 
-Postgres database 
+Postgres database should be up and running as configured in application.properties  
 
 Start the Spring boot backend:
 
@@ -34,6 +34,6 @@ Checkout JQuery version on localhost:3000/simple
 
 Checkout React version on localhost:3000/react
 
-## TODO
+### TODO
 
 Fix rending for React table.
