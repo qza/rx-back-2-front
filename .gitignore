@@ -1,0 +1,14 @@
+build
+
+*.tmp
+*.class
+
+*.jar
+*.war
+*.ear
+
+.idea
+.idea_modules/
+/out/
+
+.gradle
