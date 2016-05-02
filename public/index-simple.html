@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Reactive stream demo</title>
+    <script src="lib/jquery-2.2.3.js"></script>
+    <script src="lib/oboe-browser.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+</head>
+
+<body>
+<div id="container">
+    <div style="display: inline; text: large;"><span id="counter-div">0</span><span> Events</span></div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Title</th>
+                <th>Date produced</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+    </table>
+</div>
+<script>
+    oboe("http://localhost:8080/rest/v1/events").node("!", function(record) {
+      var tableBody = $('#table-body');
+      var counterDiv = $('#counter-div');
+      counterDiv.text(parseInt(counterDiv.text()) + 1);
+      tableBody.append('<tr><td>'+record.code+'</td><td>'+record.title+'</td><td>'+record.date+'</td></tr>');
+    });
+</script>
+</body>
+
+</html>

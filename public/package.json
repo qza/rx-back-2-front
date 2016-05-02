@@ -1,0 +1,23 @@
+{
+  "name": "rxb2f",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reactive data stream back 2 front",
+  "main": "app.js",
+  "engines": {
+    "node": "4.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/qza/rx-back-2-front.git"
+  },
+  "keywords": [
+    "react",
+    "oboe",
+    "jersey",
+    "rx",
+    "pg-async"
+  ],
+  "author": "",
+  "license": "ISC"
+}
