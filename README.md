@@ -2,7 +2,7 @@
 
 This is an example of reactive app. 
 
-Records are retrieved with [postgres async rx driver](https://github.com/alaisi/postgres-async-driver) and emitted over REST API using [RX Java extensions](https://github.com/ReactiveX/RxJava).
+Records are retrieved with [Postgres async rx driver](https://github.com/alaisi/postgres-async-driver) and emitted over REST API using [RX Java extensions](https://github.com/ReactiveX/RxJava).
 
 Frontend with JQuery, Node, Express, React and [Oboe](https://github.com/jimhigson/oboe.js) shows effects of such approach.
 
@@ -37,3 +37,4 @@ Checkout React version on localhost:3000/react
 ### TODO
 
 Fix rending for React table.
+Use timestamp instead of date.
