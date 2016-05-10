@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.stream.IntStream;
 
 @Component
@@ -30,7 +30,7 @@ public class DbPopulator {
 
     public void populate(Integer count) {
         IntStream.range(0, count).forEach(ind -> {
-            Date date = new Date(System.currentTimeMillis());
+            LocalDate date = LocalDate.now();
             db.querySet(
                     "insert into events(code, title, date_prod) values($1, $2, $3)",
                     dbRandom.randomCode(), dbRandom.randomTitle(), date
