@@ -2,6 +2,7 @@ package org.koko.rxb2f.data;
 
 import com.github.pgasync.ConnectionPoolBuilder;
 import com.github.pgasync.Db;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,9 @@
 package org.koko.rxb2f.api.stream;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.koko.rxb2f.data.Event;
+
+import org.koko.rxb2f.domain.event.Event;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,9 +15,9 @@ import java.util.concurrent.CountDownLatch;
 
 public final class StreamingObserver implements Observer<Event> {
 
-    final ObjectMapper mapper;
-    final OutputStream output;
-    final CountDownLatch latch;
+    private final ObjectMapper mapper;
+    private final OutputStream output;
+    private final CountDownLatch latch;
 
     final Logger log = LoggerFactory.getLogger(StreamingObserver.class);
 

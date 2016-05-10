@@ -1,10 +1,8 @@
-package org.koko.rxb2f.api;
+package org.koko.rxb2f.domain.event;
 
 import org.koko.rxb2f.api.stream.ObservableStreamingOutput;
 import org.koko.rxb2f.api.stream.StreamingObserver;
-import org.koko.rxb2f.data.DbAccess;
 import org.koko.rxb2f.data.DbPopulator;
-import org.koko.rxb2f.data.Event;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,16 +24,16 @@ import javax.ws.rs.core.Response;
 @Component
 @Path("/rest/v1/events")
 @Produces(MediaType.APPLICATION_JSON)
-public class RestApi {
+public class EventApi {
 
-    final DbAccess dbAccess;
-    final DbPopulator dbPopulator;
+    private final EventService eventService;
+    private final DbPopulator dbPopulator;
 
-    final Logger log = LoggerFactory.getLogger(StreamingObserver.class);
+    private final Logger log = LoggerFactory.getLogger(StreamingObserver.class);
 
     @Autowired
-    public RestApi(DbAccess dbAccess, DbPopulator dbPopulator) {
-        this.dbAccess = dbAccess;
+    public EventApi(EventService eventService, DbPopulator dbPopulator) {
+        this.eventService = eventService;
         this.dbPopulator = dbPopulator;
     }
 
@@ -47,7 +45,7 @@ public class RestApi {
 
     @GET
     public Response eventStream() {
-        Observable<Event> events = dbAccess.selectEvents();
+        Observable<Event> events = eventService.selectEvents();
         ObservableStreamingOutput stream = new ObservableStreamingOutput(events);
         log.info("initiating event stream");
         return Response.ok(stream).build();

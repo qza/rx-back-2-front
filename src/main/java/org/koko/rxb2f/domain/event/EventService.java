@@ -1,22 +1,23 @@
-package org.koko.rxb2f.data;
+package org.koko.rxb2f.domain.event;
 
 import com.github.pgasync.Db;
 import com.github.pgasync.Row;
 
+import org.koko.rxb2f.data.DbConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
+import org.springframework.stereotype.Service;
 import rx.Observable;
 
 import java.text.SimpleDateFormat;
 
-@Component
-public class DbAccess {
+@Service
+public class EventService {
 
     private Db db;
 
     @Autowired
-    public DbAccess(DbConfig dbConfig) {
+    public EventService(DbConfig dbConfig) {
         this.db = dbConfig.getDb();
     }
 

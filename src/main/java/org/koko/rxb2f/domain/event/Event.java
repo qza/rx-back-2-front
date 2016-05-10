@@ -1,4 +1,4 @@
-package org.koko.rxb2f.data;
+package org.koko.rxb2f.domain.event;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;

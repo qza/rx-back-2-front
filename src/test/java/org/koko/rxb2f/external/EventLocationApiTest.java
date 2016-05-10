@@ -3,6 +3,7 @@ package org.koko.rxb2f.external;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.koko.rxb2f.RxB2fApp;
+import org.koko.rxb2f.external.event.EventLocation;
 import org.koko.rxb2f.support.Randomized;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;

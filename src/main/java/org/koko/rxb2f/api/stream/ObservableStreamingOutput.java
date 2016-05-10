@@ -1,6 +1,6 @@
 package org.koko.rxb2f.api.stream;
 
-import org.koko.rxb2f.data.Event;
+import org.koko.rxb2f.domain.event.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import rx.Observable;
@@ -13,9 +13,9 @@ import java.util.concurrent.CountDownLatch;
 
 public class ObservableStreamingOutput implements StreamingOutput {
 
-    final Observable<Event> eventObservable;
+    private final Observable<Event> eventObservable;
 
-    final Logger log = LoggerFactory.getLogger(ObservableStreamingOutput.class);
+    private final Logger log = LoggerFactory.getLogger(ObservableStreamingOutput.class);
 
     public ObservableStreamingOutput(Observable<Event> eventObservable) {
         this.eventObservable = eventObservable;

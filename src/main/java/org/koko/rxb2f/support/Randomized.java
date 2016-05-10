@@ -31,7 +31,7 @@ public class Randomized {
         return places[random.nextInt(4)];
     }
 
-    public Void delay() {
+    public Void randomDelay() {
         try {
             Thread.sleep(random.nextInt(10000));
         } catch (InterruptedException e) {

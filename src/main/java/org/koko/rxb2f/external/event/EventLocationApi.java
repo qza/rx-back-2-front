@@ -1,4 +1,4 @@
-package org.koko.rxb2f.external;
+package org.koko.rxb2f.external.event;
 
 import org.koko.rxb2f.support.Randomized;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ public class EventLocationApi {
 
     @GET
     @Path("/{code}/location")
-    public Response getEventLocation(@PathParam("code") String code, @QueryParam("delay") String delay) {
-        Optional.ofNullable(delay).ifPresent(should -> randomized.delay());
+    public Response getEventLocation(@PathParam("code") String code, @QueryParam("randomDelay") String delay) {
+        Optional.ofNullable(delay).ifPresent(should -> randomized.randomDelay());
         EventLocation eventLocation = new EventLocation(randomized.randomPlace(), randomized.randomCoordinates());
         return Response.ok(eventLocation).build();
     }
