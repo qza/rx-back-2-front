@@ -4,6 +4,7 @@ buildscript {
     }
     repositories {
         mavenCentral()
+        maven { url 'https://oss.jfrog.org/libs-snapshot' }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -23,6 +24,7 @@ targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven { url 'https://oss.jfrog.org/libs-snapshot' }
 }
 
 dependencies {
@@ -31,7 +33,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-websocket')
 
-    compile('io.reactivex:rxnetty:0.5.1')
+    compile('io.reactivex:rxnetty-http:0.5.2-SNAPSHOT')
     compile('com.github.alaisi.pgasync:postgres-async-driver:0.7')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
