@@ -2,7 +2,7 @@
 
 This is an example of reactive app. 
 
-Records are retrieved with [Postgres async rx driver](https://github.com/alaisi/postgres-async-driver) and emitted over REST API using [RX Java extensions](https://github.com/ReactiveX/RxJava).
+Events are retrieved from database with [Postgres async RX driver](https://github.com/alaisi/postgres-async-driver). For each event location is retrieved from external API using [Netty RX http client](https://github.com/ReactiveX/RxNetty), merged and emitted over REST API as json stream.
 
 Frontend with JQuery, Node, Express, React and [Oboe](https://github.com/jimhigson/oboe.js) shows effects of such approach.
 
@@ -35,6 +35,10 @@ Checkout JQuery version on localhost:3000/simple
 Checkout React version on localhost:3000/react
 
 ### TODO
+
+Warm up stream
+
+Handle failures, retries and back-pressure
 
 Fix rending for React table.
 

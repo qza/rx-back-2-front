@@ -17,7 +17,8 @@
             <tr>
                 <th>Code</th>
                 <th>Title</th>
-                <th>Date produced</th>
+                <th>Date</th>
+                <th>Location</th>
             </tr>
         </thead>
         <tbody id="table-body">
@@ -25,11 +26,17 @@
     </table>
 </div>
 <script>
+    var tableBody = $('#table-body');
+    var counterDiv = $('#counter-div');
     oboe("http://localhost:8080/rest/v1/events").node("!", function(record) {
-      var tableBody = $('#table-body');
-      var counterDiv = $('#counter-div');
       counterDiv.text(parseInt(counterDiv.text()) + 1);
-      tableBody.append('<tr><td>'+record.code+'</td><td>'+record.title+'</td><td>'+record.date+'</td></tr>');
+      var content = '<tr>' +
+                        '<td>'+record.code+'</td>' +
+                        '<td>'+record.title+'</td>' +
+                        '<td>'+record.date+'</td>' +
+                        '<td>'+record.location.place+ '[' + record.location.coordinates + ']' + '</td>' +
+                    '</tr>';
+      tableBody.append(content);
     });
 </script>
 </body>
