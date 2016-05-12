@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import rx.Observable;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 
 @Service
@@ -38,25 +39,35 @@ public class EventService {
         this.rxHttpClient = rxHttpClient.initLocationApiClient();
     }
 
+    public Observable<Event> collectEventsWithLocations() {
+        Observable<Event> events = selectEvents();
+        Observable<EventLocation> locations = events.flatMap(this::selectEventLocation);
+        return Observable.zip(events.onBackpressureBuffer(1000), locations, this::asEventWithLocation);
+    }
+
     public Observable<Event> selectEvents() {
         return db.queryRows("select * from events").map(this::asEvent);
     }
 
     public Observable<EventLocation> selectEventLocation(Event event) {
         return rxHttpClient
-                .createGet("/external/events" + event.getCode() + "/location")
-                .doOnNext(r -> log.debug("received event location response: {}", r.toString()))
+                .createGet("/external/events/" + event.getCode() + "/location")
+                .doOnNext(r -> log.info("received event location response: {}", r.getStatus()))
                 .flatMap(resp -> resp.getContent().map(this::asEventLocation));
 
     }
 
     private Event asEvent(Row row) {
-        return new Event(row.getString("code"), row.getString("title"), sdf.format(row.getDate("date_prod")));
+        return new Event(row.getString("code"), row.getString("title"), sdf.format(row.getDate("date_prod")), null);
+    }
+
+    private Event asEventWithLocation(Event event, EventLocation location) {
+        return new Event(event.getCode(), event.getTitle(), event.getDate(), location);
     }
 
     private EventLocation asEventLocation(ByteBuf byteBuf) {
         try {
-            return new ObjectMapper().readValue(byteBuf.array(), EventLocation.class);
+            return new ObjectMapper().readValue(byteBuf.toString(Charset.defaultCharset()), EventLocation.class);
         } catch (IOException e) {
             log.error("error mapping location json", e);
         }

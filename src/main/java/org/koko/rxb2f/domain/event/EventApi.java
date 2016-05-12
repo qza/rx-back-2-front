@@ -45,7 +45,7 @@ public class EventApi {
 
     @GET
     public Response eventStream() {
-        Observable<Event> events = eventService.selectEvents();
+        Observable<Event> events = eventService.collectEventsWithLocations();
         ObservableStreamingOutput stream = new ObservableStreamingOutput(events);
         log.info("initiating event stream");
         return Response.ok(stream).build();
