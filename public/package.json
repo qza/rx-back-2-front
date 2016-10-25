@@ -16,8 +16,12 @@
     "oboe",
     "jersey",
     "rx",
-    "pg-async"
+    "pg-async",
+    "express"
   ],
+  "dependencies": {
+    "express": "^4.13.3"
+  },
   "author": "",
   "license": "ISC"
 }

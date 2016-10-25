@@ -1,0 +1,30 @@
+web-back:
+  image: qza/rx-b2f-boot
+  volumes:
+    - ./:/data
+  ports:
+    - 8080:8080
+  links:
+    - db
+  command: gradle bootRun --info
+  environment:
+    DB_HOST: 172.0.0.23
+    DB_PORT: 5432
+    DB_NAME: rxb2f
+
+web-front:
+  image: qza/rx-b2f-node
+  ports:
+    - 3000:3000
+  links:
+    - db
+  command: node app.js
+
+db:
+  image: postgres:9.4.1
+  net: "host"
+  entrypoint: bash -c ./init-db.sh
+  environment:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: root
+    POSTGRES_DB: rxb2f
